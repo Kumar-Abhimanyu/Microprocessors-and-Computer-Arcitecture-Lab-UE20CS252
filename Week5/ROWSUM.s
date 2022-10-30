@@ -1,0 +1,16 @@
+.DATA 
+MAT: .WORD 2,4,6,8,10,12,14,16,18 
+SUM: .WORD 
+.TEXT 
+LDR R5,=MAT 
+LDR R6,=SUM 
+MOV R0, #3  
+LOOP: 
+ 	LDMIA R5!,{R2-R4} 
+ 	ADD R2,R2,R3 
+ 	ADD R2,R2,R4 
+ 	STR R2,[R6],#4 
+ 	SUB R0,R0,#1 
+ 	TEQ R0,#0    
+ 	BNE LOOP 
+ SWI 0X11 
